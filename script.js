@@ -12,13 +12,14 @@ window.onmousemove = e => {
     maxDelta = window.innerWidth / 2;
     const percentage = (mouseDelta / maxDelta) * -100,
     nextPercentage = parseFloat(track.dataset.prevPercentage) + percentage;
-    track.dataset.percentage = nextPercentage;
+    const boundedPercentage = Math.min(Math.max(nextPercentage, 0), 100);
+    track.dataset.percentage = boundedPercentage;
     track.animate({
-        transform: `translate(${nextPercentage}%, -50%)`
+        transform: `translate(${boundedPercentage}%, -50%)`
     }, {duration: 1200, fill: "forwards"});
     for(const image of track.getElementsByClassName("image")){
         image.animate({
-            objectPosition: `${nextPercentage + 100}% 50%`
+            objectPosition: `${boundedPercentage + 100}% 50%`
         }, {duration: 1200, fill: "forwards"});
     }
 }
