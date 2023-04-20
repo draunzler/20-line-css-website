@@ -12,7 +12,7 @@ window.onmousemove = e => {
     maxDelta = window.innerWidth / 2;
     const percentage = (mouseDelta / maxDelta) * -100,
     nextPercentage = parseFloat(track.dataset.prevPercentage) + percentage;
-    const boundedPercentage = Math.max(Math.min(nextPercentage, 0), 100);
+    const boundedPercentage = Math.max(Math.min(nextPercentage, 0), -100);
     track.dataset.percentage = boundedPercentage;
     track.animate({
         transform: `translate(${boundedPercentage}%, -50%)`
